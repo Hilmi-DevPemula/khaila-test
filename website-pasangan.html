@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff0f5" />
+  <title>Website buat khaila ♡</title>
+  <style>
+    :root {
+      --pink: #f7b8cc;
+      --pink-soft: #fff0f5;
+      --pink-pale: #fff8fa;
+      --rose: #d97898;
+      --rose-dark: #a94f70;
+      --ink: #634653;
+      --muted: #987987;
+      --white: #fff;
+      --shadow: 0 18px 55px rgba(190, 112, 144, .15);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.95) 0 3px, transparent 4px),
+        radial-gradient(circle at 86% 25%, rgba(255,255,255,.8) 0 4px, transparent 5px),
+        linear-gradient(145deg, #fff8fa 0%, #ffeaf1 48%, #fff3f7 100%);
+    }
+
+    .hearts { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(217, 120, 152, .25);
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      12% { opacity: 1; }
+      to { transform: translateY(-115vh) rotate(28deg); opacity: 0; }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0 32px;
+    }
+
+    .hero { text-align: center; padding: 30px 12px 24px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(217,120,152,.25);
+      border-radius: 999px;
+      color: var(--rose-dark);
+      background: rgba(255,255,255,.62);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 18px 0 10px;
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 500;
+      line-height: 1.05;
+    }
+    .hero p { margin: 0 auto; max-width: 540px; color: var(--muted); line-height: 1.8; font-size: 1rem; }
+    .big-heart { display: inline-block; margin-top: 20px; color: #e68eaa; font-size: 2rem; animation: beat 1.3s ease-in-out infinite; }
+    @keyframes beat { 0%,100% { transform: scale(1); } 15% { transform: scale(1.18); } 30% { transform: scale(1); } 45% { transform: scale(1.12); } }
+
+    .card {
+      margin: 22px auto;
+      padding: clamp(22px, 5vw, 38px);
+      max-width: 690px;
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 28px;
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    .card h2 {
+      margin: 0 0 9px;
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 500;
+    }
+    .sub { margin: 0 auto 22px; max-width: 470px; color: var(--muted); line-height: 1.7; }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 21px;
+      background: linear-gradient(135deg, #f3abc2, #df83a2);
+      color: white;
+      font-size: .95rem;
+      font-weight: 650;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(217,120,152,.22);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 11px 24px rgba(217,120,152,.3); filter: saturate(1.08); }
+    button:active { transform: translateY(0) scale(.98); }
+    button:focus-visible { outline: 3px solid #bd6687; outline-offset: 4px; }
+    .button-light { background: #fff; color: var(--rose-dark); border: 1px solid #f4cada; box-shadow: none; }
+
+    .envelope-wrap { display: grid; place-items: center; padding: 8px 0 18px; }
+    .envelope {
+      position: relative;
+      width: 170px;
+      height: 112px;
+      margin: 10px auto 18px;
+      border-radius: 10px;
+      background: #f6b5ca;
+      box-shadow: 0 12px 25px rgba(190,112,144,.2);
+      cursor: pointer;
+      transition: transform .25s ease;
+    }
+    .envelope:hover { transform: translateY(-4px) rotate(-2deg); }
+    .envelope::before, .envelope::after {
+      content: ""; position: absolute; bottom: 0; width: 0; height: 0;
+      border-style: solid; z-index: 2;
+    }
+    .envelope::before { left: 0; border-width: 56px 85px; border-color: transparent transparent #ee9fb9 #ee9fb9; border-radius: 0 0 0 10px; }
+    .envelope::after { right: 0; border-width: 56px 85px; border-color: transparent #f2abc1 #f2abc1 transparent; border-radius: 0 0 10px 0; }
+    .flap {
+      position: absolute; top: 0; left: 0; z-index: 3; width: 0; height: 0;
+      border-left: 85px solid transparent; border-right: 85px solid transparent;
+      border-top: 62px solid #e58ca9; transform-origin: top; transition: transform .45s ease;
+    }
+    .seal { position: absolute; z-index: 4; left: 50%; top: 48%; transform: translate(-50%,-50%); color: white; font-size: 25px; }
+    .envelope.open .flap { transform: rotateX(180deg); }
+    .letter {
+      display: none; max-width: 500px; margin: 5px auto 0; padding: 22px;
+      border: 1px dashed #e8a4bb; border-radius: 18px; background: #fff9fb;
+      color: #795867; line-height: 1.9; text-align: left; animation: appear .45s ease;
+    }
+    .letter.show { display: block; }
+    .letter strong { color: var(--rose-dark); }
+    @keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .compliment {
+      min-height: 65px; display: grid; place-items: center; padding: 12px 8px;
+      color: var(--rose-dark); font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 3.5vw, 1.55rem); line-height: 1.5;
+    }
+    .moods { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin: 18px 0 8px; }
+    .moods button { padding: 10px 15px; font-size: .88rem; background: white; color: var(--rose-dark); border: 1px solid #f3c6d5; box-shadow: none; }
+    .moods button.selected { background: #f4b1c7; color: white; border-color: #f4b1c7; }
+    .mood-message { min-height: 48px; margin: 15px auto 0; color: var(--muted); line-height: 1.7; }
+
+    .footer { padding: 28px 12px 10px; text-align: center; color: #b58a9b; font-size: .85rem; }
+    .footer span { color: var(--rose); }
+    @media (max-width: 520px) {
+      main { padding-top: 28px; }
+      .hero { padding-top: 24px; }
+      .card { border-radius: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">a little website made with love</div>
+      <!-- Ganti nama di bawah sesuai keinginan -->
+      <h1>Untuk Kamu,</h1>
+      <h1>Khaila Sayang ♡ </h1>
+      <p>Di antara banyak hal indah di dunia, bertemu dan mengenal kamu adalah salah satu favoritku.</p>
+      <div class="big-heart" aria-hidden="true">♥</div>
+    </header>
+
+    <section class="card" aria-labelledby="letter-title">
+      <h2 id="letter-title">Ada surat kecil untukmu</h2>
+      <p class="sub">Coba buka amplopnya. Ada sesuatu yang ingin aku sampaikan. 💌</p>
+      <div class="envelope-wrap">
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Buka surat cinta" aria-expanded="false">
+          <div class="flap"></div>
+          <div class="seal">♥</div>
+        </div>
+        <button id="openLetter" type="button">Buka suratnya</button>
+      </div>
+      <div class="letter" id="letter">
+        Hai, kamu. <br /><br />
+        Terima kasih sudah hadir dan membuat hari-hariku terasa lebih berwarna. Aku mungkin tidak selalu pandai merangkai kata, tapi aku ingin kamu tahu bahwa kamu berharga, kamu istimewa, dan kamu pantas mendapatkan banyak hal baik.<br /><br />
+        Semoga kita selalu punya alasan untuk tersenyum, saling menguatkan, dan menciptakan banyak cerita indah bersama.<br /><br />
+        <strong>Dengan penuh sayang, seseorang yang selalu ingin melihatmu bahagia. ♡</strong>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="compliment-title">
+      <h2 id="compliment-title">Satu hal yang perlu kamu ingat</h2>
+      <p class="sub">Tekan tombol di bawah untuk mendapatkan satu pesan manis.</p>
+      <div class="compliment" id="compliment" aria-live="polite">Kamu itu favoritku, hari ini dan seterusnya. ♡</div>
+      <button id="sweetButton" type="button">Klik untuk pesan manis ✨</button>
+    </section>
+
+    <section class="card" aria-labelledby="mood-title">
+      <h2 id="mood-title">Bagaimana perasaanmu hari ini?</h2>
+      <p class="sub">Pilih satu emoji, ya. Aku ingin tahu moodnya tuan putri.</p>
+      <div class="moods" role="group" aria-label="Pilih suasana hati">
+        <button type="button" data-mood="happy">🥰 Bahagia</button>
+        <button type="button" data-mood="tired">😴 Lelah</button>
+        <button type="button" data-mood="sad">🥺 Sedih</button>
+        <button type="button" data-mood="love">💗 Lagi kangen</button>
+      </div>
+      <p class="mood-message" id="moodMessage" aria-live="polite">Apa pun perasaanmu, semoga kamu selalu merasa disayangi. 💕</p>
+    </section>
+
+    <footer class="footer">Dibuat dengan <span>♥</span> request tuan putri</footer>
+  </main>
+
+  <script>
+    // Hati kecil yang melayang di latar belakang
+    const heartsContainer = document.getElementById('hearts');
+    const heartSymbols = ['♡', '♥', '୨୧'];
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = heartSymbols[i % heartSymbols.length];
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.fontSize = `${14 + Math.random() * 22}px`;
+      heart.style.animationDuration = `${9 + Math.random() * 12}s`;
+      heart.style.animationDelay = `${Math.random() * 12}s`;
+      heartsContainer.appendChild(heart);
+    }
+
+    // Interaksi surat cinta
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+    const openLetterButton = document.getElementById('openLetter');
+    function toggleLetter() {
+      const isOpen = letter.classList.toggle('show');
+      envelope.classList.toggle('open', isOpen);
+      envelope.setAttribute('aria-expanded', String(isOpen));
+      openLetterButton.textContent = isOpen ? 'Tutup surat' : 'Buka suratnya';
+    }
+    openLetterButton.addEventListener('click', toggleLetter);
+    envelope.addEventListener('click', toggleLetter);
+    envelope.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleLetter();
+      }
+    });
+
+    // Pesan manis acak
+    const sweetMessages = [
+      'Senyummu adalah salah satu pemandangan favoritku. ♡',
+      'Jangan lupa bahagia, ya. Dunia lebih indah saat kamu tersenyum.',
+      'Kamu tidak harus sempurna untuk menjadi seseorang yang istimewa.',
+      'Kalau hari ini terasa berat, ingat bahwa kamu tidak harus melewatinya sendirian.',
+      'Dari sekian banyak hal baik, kamu tetap jadi salah satu yang terbaik. 💗',
+      'Semoga hari-harimu selembut warna pink dan sehangat pelukan.'
+    ];
+    let previousMessage = -1;
+    document.getElementById('sweetButton').addEventListener('click', () => {
+      let next;
+      do { next = Math.floor(Math.random() * sweetMessages.length); }
+      while (next === previousMessage && sweetMessages.length > 1);
+      previousMessage = next;
+      document.getElementById('compliment').textContent = sweetMessages[next];
+    });
+
+    // Pesan sesuai suasana hati
+    const moodMessages = {
+      happy: 'Ikut senang dengarnya! Semoga kebahagiaan kecil hari ini jadi cerita indah yang kamu ingat. 🥰',
+      tired: 'Istirahat dulu, ya. Kamu sudah berusaha sejauh ini. Tidak apa-apa untuk pelan-pelan. 🤍',
+      sad: 'Tidak apa-apa kalau belum baik-baik saja. Tarik napas, kamu layak mendapat pelukan dan hari yang lebih baik. 🫂',
+      love: 'Sini, kita eumm eumm 💗'
+    };
+    document.querySelectorAll('[data-mood]').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[data-mood]').forEach((item) => item.classList.remove('selected'));
+        button.classList.add('selected');
+        document.getElementById('moodMessage').textContent = moodMessages[button.dataset.mood];
+      });
+    });
+  </script>
+</body>
+</html>
